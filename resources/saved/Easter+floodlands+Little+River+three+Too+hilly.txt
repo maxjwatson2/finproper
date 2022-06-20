@@ -1,0 +1,1 @@
+group-type=farmer&group-name=Easter+floodlands+Little+River+three+Too+hilly&acres=276&fertility=75&crop-type=wheat&skill-stupidity=15&harvest-losses=10&threshing-losses=10&raiding-losses=1&animal-losses=5&plague-losses=5&farmer-number=12&farmer-consumption=12

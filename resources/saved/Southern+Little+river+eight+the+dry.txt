@@ -1,0 +1,1 @@
+group-type=farmer&group-name=Southern+Little+river+eight+the+dry&acres=1035&fertility=75&crop-type=wheat&skill-stupidity=25&harvest-losses=10&threshing-losses=10&raiding-losses=1&animal-losses=5&plague-losses=15&farmer-number=21&farmer-consumption=12

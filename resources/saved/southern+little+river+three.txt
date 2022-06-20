@@ -1,0 +1,1 @@
+group-type=farmer&group-name=southern+little+river+three&acres=1037&fertility=100&crop-type=wheat&skill-stupidity=15&harvest-losses=10&threshing-losses=10&raiding-losses=1&animal-losses=5&plague-losses=5&farmer-number=69&farmer-consumption=69

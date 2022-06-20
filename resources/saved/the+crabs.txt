@@ -1,0 +1,1 @@
+group-type=soldier&group-name=the+crabs&numbers=490&average-pay=1.5
