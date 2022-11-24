@@ -20,14 +20,14 @@
 
 (def groups (atom []))
 
-(defn add-group-backend [group] ;; NOTE this should also be on the back end
+(defn add-group-backend [group]                             ;; NOTE this should also be on the back end
   (swap! groups conj [:div [:a {:href (str "/guydeets/" (str group @group-count))} (str group @group-count)]]))
 
-(defn add-group [group] ;; NOTE this should be back end eventually
+(defn add-group [group]                                     ;; NOTE this should be back end eventually
   (swap! group-count inc)
-  (case group ;; NOTE Abstract this more. We have a lot of the devil's clip board.
+  (case group                                               ;; NOTE Abstract this more. We have a lot of the devil's clip board.
     "production" (add-group-backend group)
-    "farmer"(add-group-backend group)
+    "farmer" (add-group-backend group)
     "soldier" (add-group-backend group)))
 
 (defn all-saved-groups []
@@ -49,7 +49,9 @@
 (def group-buttons
   [[:div [:a {:href "/guydeets/production"} "Add Production"]]
    [:div [:a {:href "/guydeets/farmer"} "Add Farmer"]]
-   [:div [:a {:href "/guydeets/soldier"} "Add Soldier"]]])
+   [:div [:a {:href "/guydeets/soldier"} "Add Soldier"]]
+   [:div [:a {:href "/guydeets/livestock"} "Add Livestock"]]
+   ])
 
 (defn add-group-page [group]
   (add-group group)
@@ -99,8 +101,9 @@
       "farmer" (farmer-form)
       "soldier" (soldier-form)
       "production" (production-form)
+      "livestock" (livestock-form)
       )
 
     (all-saved-groups)
     #_(for [fil (drop 1 (file-seq (clojure.java.io/file (io/resource "saved"))))]
-      [:div [:a {:href (str "/realdeets/" (str (:group-name (process-string (slurp fil)))))} (str (:group-name (process-string (slurp fil))))]])))
+        [:div [:a {:href (str "/realdeets/" (str (:group-name (process-string (slurp fil)))))} (str (:group-name (process-string (slurp fil))))]])))

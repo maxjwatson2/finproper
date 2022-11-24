@@ -13,7 +13,7 @@
     [fintwo.back-end :as be]
     [fintwo.helpers :refer :all]
     [clojure.java.io :as io]
-   #_[fintwo.pages :refer :all]))
+    #_[fintwo.pages :refer :all]))
 
 
 
@@ -65,5 +65,18 @@
    (text-field {:class "form-control" :ng-model "groupname" :placeholder "Average pay"} "average-pay")
    (text-field {:class "form-control" :ng-model "groupname" :placeholder "cart men"} "cart-men")
    (text-field {:class "form-control" :ng-model "groupname" :placeholder "cart rate"} "cart-rate")
+   (submit-button "submit button")
+   [:h1 {:class "text-success"}]])
+
+(defn livestock-form []
+  [:form
+   (hidden-field {:class "form-control"} "group-type" "livestock")
+   (text-field {:class "form-control" :ng-model "groupname" :placeholder "Group name"} "group-name") ;; WTF is ng-model and why is it all group name?
+   (text-field {:class "form-control" :ng-model "groupname" :placeholder "Animal type"} "animal-type")
+   (text-field {:class "form-control" :ng-model "groupname" :placeholder "Feed consumption"} "animal-feed")
+   (text-field {:class "form-control" :ng-model "groupname" :placeholder "Feed cost per pound"} "feed-cost")
+   (text-field {:class "form-control" :ng-model "groupname" :placeholder "Animal amount"} "numbers")
+   (text-field {:class "form-control" :ng-model "groupname" :placeholder "Workers"} "workers")
+   (text-field {:class "form-control" :ng-model "groupname" :placeholder "Workers pay"} "workers-pay")
    (submit-button "submit button")
    [:h1 {:class "text-success"}]])

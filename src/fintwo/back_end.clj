@@ -11,11 +11,11 @@
                 (str/split ns #"="))]
           [(keyword k) v])))
 
-(defn new-farmer-to-backend [farm-str file-name] ;; NOTE rename
+(defn new-farmer-to-backend [farm-str file-name]            ;; NOTE rename
   (spit (str (io/resource "saved")
              (str "\\" file-name ".txt")) farm-str))
 
-(defn wheat-gross-yeild [acres fertility] ;; NOTE this if for the crab world. In real life medieval farms had 10 bushels an acre for good lands(we think).
+(defn wheat-gross-yeild [acres fertility]                   ;; NOTE this if for the crab world. In real life medieval farms had 10 bushels an acre for good lands(we think).
   (* (* (/ fertility 100) 20) (* 60 acres))
   )
 
@@ -24,18 +24,18 @@
   )
 
 (defn loss-calculation [pounds skl hrvst thrsh raid anml plgue] ;; This assumes plagues happen after raids and animals and junk but before harvesting.
-  (let [idiocy (- pounds (* pounds (* skl 0.01))) ;; Animals and raiders should maybe be a flat number but It's cool for now.
+  (let [idiocy (- pounds (* pounds (* skl 0.01)))           ;; Animals and raiders should maybe be a flat number but It's cool for now.
         thieves (- idiocy (* idiocy (* (+ raid anml) 0.01)))
         disease (- thieves (* thieves (* plgue 0.01)))
         harvest (- disease (* disease (* hrvst 0.01)))
-        thrsh (- harvest (* harvest (* thrsh 0.01)));; We're not calculating milling losses at the moment but we should be
+        thrsh (- harvest (* harvest (* thrsh 0.01)))        ;; We're not calculating milling losses at the moment but we should be
         ]
     thrsh))
 
 (defn farmer-production [crp-typ acrs frt]
   (case crp-typ
     "wheat" (wheat-gross-yeild acrs frt)
-    "peanut" (peanut-gross-yeild acrs frt) ;; NOTE This is modern peanuts and maybe pre shelling. I have no idea.
+    "peanut" (peanut-gross-yeild acrs frt)                  ;; NOTE This is modern peanuts and maybe pre shelling. I have no idea.
     :else "Bruh"))
 
 (defn get-group-type [grp]
@@ -46,7 +46,7 @@
                (str "\\saved\\" grp ".txt")))))))
 
 (defn get-production-details [production]
-  (let [new-prod ;; NOTE temp.
+  (let [new-prod                                            ;; NOTE temp.
         (process-string
           (slurp
             (str (io/resource
@@ -60,14 +60,14 @@
         profit-per-day (- income-per-day cost-per-day)
         profit-per-season (* 60 (- income-per-day cost-per-day))]
 
-    {:total-pay-daily total-pay-daily
-     :total-pay-seasonal total-pay-per-season
-     :units-per-season units-per-season
+    {:total-pay-daily      total-pay-daily
+     :total-pay-seasonal   total-pay-per-season
+     :units-per-season     units-per-season
      :gross-income-per-day income-per-day
-     :cost-per-day cost-per-day
-     :cost-per-season cost-per-season
-     :profit-per-day profit-per-day
-     :profit-per-season profit-per-season
+     :cost-per-day         cost-per-day
+     :cost-per-season      cost-per-season
+     :profit-per-day       profit-per-day
+     :profit-per-season    profit-per-season
      }))
 
 (defn get-soldier-details [soldier]
@@ -76,8 +76,27 @@
           (slurp
             (str (io/resource
                    (str "\\saved\\" soldier ".txt")))))]
-    {:total-pay-daily (* (bigdec (:average-pay new-sldr)) (bigdec (:numbers new-sldr)))
+    {:total-pay-daily    (* (bigdec (:average-pay new-sldr)) (bigdec (:numbers new-sldr)))
      :total-pay-seasonal (* (* (bigdec (:average-pay new-sldr)) (bigdec (:numbers new-sldr))) 60)
+     }))
+
+(defn get-livestock-details [animals]
+  (let [new-animals
+        (process-string
+          (slurp
+            (str (io/resource
+                   (str "\\saved\\" animals ".txt")))))]
+    (println new-animals)
+    {:animal-type            "Pig"
+     :feed-pounds-per-day    1
+     :workers-pay-per-day    1
+     :workers-pay-per-season 1
+     :feed-cost-per-day      1
+     :total-feed-per-animal  1                              ;; over it's whole life
+     :meat-per-day           1                              ;; Meat isn't really correct as it's total biomass
+     :meat-per-season        1
+     :meat-per-animal        1
+     :kids-from-one-litter   1                              ;one litter of all the animals.
      }))
 
 (defn get-farm-details [farm]

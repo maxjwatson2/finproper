@@ -19,13 +19,14 @@
                       "farmer" (be/get-farm-details (:guy (:params group)))
                       "soldier" (be/get-soldier-details (:guy (:params group)))
                       "production" (be/get-production-details (:guy (:params group)))
+                      "livestock" (be/get-livestock-details (:guy (:params group)))
                       )]
     (html
       "hey look a details page"
       (str group-deets))))
 
 (defroutes app-routes
-           (GET "/" [] pag/front-page)
+           (GET "/" [] pag/front-page) ;;MNOTE rename this so it's more clear for when I come back to this in like 3 years.
            (GET "/addguy/:group" [group] (pag/add-group-page group))
            (GET "/guydeets/:guy" req (pag/view-guy-page req))
            (GET "/realdeets/:guy" req (view-details-page req))

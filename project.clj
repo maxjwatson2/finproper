@@ -1,5 +1,5 @@
 (defproject fintwo "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
+  :description "This app is for calculating farm yields and taxes in the wizard's world."
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
